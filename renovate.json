@@ -1,0 +1,23 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "packageRules": [
+    {
+      "matchCurrentVersion": "1.21",
+      "matchDatasources": ["golang-version"],
+      "replacementName": "go",
+      "replacementVersion": "1.20",
+      "matchManagers": ["regex"]
+    }
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "fileMatch": "^go.mod$",
+      "matchStrings": [
+        "(#|\\/\\/) renovate: go\\n[^\\n]*?(?<currentValue>v?\\d+\\.\\d+(\\.\\d+(-[\\S]+)?)?)"
+      ],
+      "datasourceTemplate": "golang-version",
+      "depNameTemplate": "go"
+    }
+  ]
+}
